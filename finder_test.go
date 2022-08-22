@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"io/fs"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -68,21 +67,6 @@ func assertContainsPath(t testing.TB, paths []string, path string) {
 	if !contains {
 		t.Errorf("expected %s to contain %q but it didn't", paths, path)
 	}
-}
-
-func ExampleFindFiles() {
-	outChan, err := FindFiles(testFS, "Hello")
-	if err != nil {
-		log.Fatalf("Error: %s", err)
-	}
-
-	for file := range outChan {
-		fmt.Println(file)
-	}
-
-	// Output: greeting.txt
-	// subdirectory\greeting2.txt
-	// subdirectory\another\greeting3.txt
 }
 
 /*
